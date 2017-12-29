@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+</head>
+<body>
+	<article layout:fragment="conteudo">
+		<form action="insert" method="post" th:object="${card}">
+			<div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
+				<span th:text="${mensagem}">Título salvo com sucesso!!!</span>
+			</div>
+			<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+				<div th:each="detailedError : ${#fields.detailedErrors()}">
+					<span th:text="${detailedError.message}"></span>
+				</div>
+			</div>
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					Novo cartão
+				</div>
+				<div class="panel-body">
+						<div class="row">
+							<div class="form-group col-md-3" th:classappend="${#fields.hasErrors('name')} ? has-error">
+								<label for="name">Nome do cartão (não coloque os números)</label>
+								<input type="text" class="form-control" id="name" th:field="*{name}" />
+							</div>
+							<div class="form-group col-md-1" th:classappend="${#fields.hasErrors('flag')} ? has-error">
+								<label for="flag">Bandeira</label>
+								<select th:field="*{flag}" id="flag" class="form-control">
+									<option th:value="${null}"></option>
+									<option th:each="flag:${flags}" th:value="${flag.id}" th:text="${flag.name}"></option>
+								</select>
+							</div>
+						</div>
+				</div>
+				<div class="panel-footer">
+					<a href="/cards" class="btn btn-link">Voltar para a lista de cartões</a>
+					<button class="btn btn-primary pull-right">Salvar</button>
+				</div>
+			</div>
+		</form>
+	</article>
+</body>
+</html>
