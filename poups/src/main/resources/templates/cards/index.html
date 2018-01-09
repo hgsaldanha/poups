@@ -18,7 +18,7 @@
 					<tr th:each="card :${cards}" th:classappend="${!card.active?'text-danger':''}">
 						<td th:text="${card.name}">Nome do cartão</td>
 						<td th:text="${card.flag.name}">Bandeira</td>
-						<td>Editar | Inativar</td>
+						<td><a th:href="@{/cards/{codigo}(codigo=${card.id})}" class="btn btn-link btn-xs">Editar</a> | Inativar</td>
 					</tr>
 					<tr th:if="${#lists.isEmpty(cards)}">
 						<td colspan="3">Nenhum cartão cadastrado. <a href="/cards/insert">Que tal começar agora?</a></td>

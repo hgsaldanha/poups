@@ -29,4 +29,8 @@ public class CardService {
 	public void save(Card card) {
 		cards.save(card);
 	}
+
+	public Card findOne(Long id) {
+		return cards.findOne(id);
+	}
 }
