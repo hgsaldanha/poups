@@ -19,7 +19,7 @@ public class CardService {
 	Flags flags;
 
 	public List<Card> findAll() {
-		return cards.findAllByOrderByNameAsc();
+		return cards.findAllByOrderByActiveDescNameAsc();
 	}
 
 	public List<Flag> allFlags() {

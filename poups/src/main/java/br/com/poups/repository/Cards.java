@@ -10,6 +10,6 @@ import br.com.poups.model.Card;
 @Repository
 public interface Cards extends JpaRepository<Card, Long> {
 
-	public List<Card> findAllByOrderByNameAsc();
+	public List<Card> findAllByOrderByActiveDescNameAsc();
 
 }

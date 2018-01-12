@@ -46,10 +46,9 @@ public class CardController {
 		return "redirect:/cards";
 	}
 	
-	@GetMapping("{id}")
-	public ModelAndView detalhe(@PathVariable Long id) {
-		Card card = cs.findOne(id);
-		return new ModelAndView("cards/insert").addObject("card", card);
+	@GetMapping("/{id}")
+	public ModelAndView detalhe(@PathVariable("id") Card card) {
+		return new ModelAndView("cards/insert").addObject(card);
 	}
 	
 	@ModelAttribute("flags")

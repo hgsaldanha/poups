@@ -9,9 +9,6 @@
 	<article layout:fragment="conteudo">
 		<form action="insert" method="post" th:object="${card}">
 			<input type="hidden" th:field="*{id}" />
-			<div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
-				<span th:text="${mensagem}">Título salvo com sucesso!!!</span>
-			</div>
 			<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
 				<div th:each="detailedError : ${#fields.detailedErrors()}">
 					<span th:text="${detailedError.message}"></span>
@@ -19,22 +16,25 @@
 			</div>
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					Cartão de Crédito
+					Desativação de Cartão de Crédito
 				</div>
 				<div class="panel-body">
-						<div class="row">
-							<div class="form-group col-md-3 col-sm-3" th:classappend="${#fields.hasErrors('name')} ? has-error">
-								<label for="name">Nome do cartão (não coloque os números)</label>
-								<input type="text" class="form-control" id="name" th:field="*{name}" />
-							</div>
-							<div class="form-group col-md-2 col-sm-3" th:classappend="${#fields.hasErrors('flag')} ? has-error">
-								<label for="flag">Bandeira</label>
-								<select th:field="*{flag}" id="flag" class="form-control">
-									<option th:value="${null}"></option>
-									<option th:each="flag:${flags}" th:value="${flag.id}" th:text="${flag.name}"></option>
-								</select>
+					<p>Para mantermos a integridade das informações existentes no sistema, não é permitido excluir cartões de crédito. Ao invés disso, podemos desativálo.</p>
+					<p>Ao executar esta operação, não será possível registrar compras neste cartão. <strong>Tem certeza de que deseja fazer isso?</strong></p>
+					<div class="row">
+						<div class="form-group">
+							<label class="control-label col-sm-3">Nome do cartão</label>
+							<div class="col-md-3">
+								<p class="form-control-static" th:text="*{name}">nome do cartão</p>
 							</div>
 						</div>
+						<div class="form-group col-md-2 col-sm-3">
+							<label class="control-label col-sm-3">Bandeira</label>
+							<div class="col-md-3">
+								<p class="form-control-static" th:text="*{flag}">bandeira do cartão</p>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="panel-footer">
 					<a href="/cards" class="btn btn-link">Voltar para a lista de cartões</a>
